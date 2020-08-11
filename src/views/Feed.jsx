@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux'
 import TweetBox from "../components/TweetBox";
 import Post from "../components/Post";
 import "./Feed.css";
@@ -24,3 +25,14 @@ export default function Feed() {
 		</div>
 	);
 }
+
+
+const mapStateToProps = (state) => ({
+	posts: state.posts
+})
+
+const mapDispatchToProps = {
+	
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
