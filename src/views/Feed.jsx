@@ -1,10 +1,15 @@
-import React from "react";
-import { connect } from 'react-redux'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchRequest } from "../store/posts/actions";
 import TweetBox from "../components/TweetBox";
 import Post from "../components/Post";
-import "./Feed.css";
+import "./Feed.sass";
 
-export default function Feed() {
+function Feed(props) {
+	useEffect(() => {
+		props.fetchRequest();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<div className='feed'>
 			{/* Header */}
@@ -12,27 +17,25 @@ export default function Feed() {
 			{/* TweetBox */}
 			<TweetBox />
 			{/* Post */}
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
+			{props.posts.map((post) => (
+				<Post
+					key={post.text}
+					displayName={post.displayName}
+					username={post.username}
+					avatar={post.avatar}
+					text={post.text}
+				/>
+			))}
 		</div>
 	);
 }
 
-
 const mapStateToProps = (state) => ({
-	posts: state.posts
-})
+	posts: state.posts.data,
+});
 
 const mapDispatchToProps = {
-	
-}
+	fetchRequest,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed)
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

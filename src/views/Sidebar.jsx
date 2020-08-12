@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Sidebar.css";
+import "./Sidebar.sass";
 
 import Home from "@material-ui/icons/Home";
 import Search from "@material-ui/icons/Search";
@@ -18,7 +18,7 @@ import SideOptions from "../components/SideOptions";
 export default function Navbar() {
 	return (
 		<div className='sidebar'>
-				<Twitter className='sidebar_twitterIcon' />
+				<Twitter className='sidebar__twitterIcon' />
 				<SideOptions text='Home' Icon={Home} />
 				<SideOptions text='Search' Icon={Search} />
 				<SideOptions text='Notifications' Icon={Notifications} />

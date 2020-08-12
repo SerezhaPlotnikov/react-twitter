@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Widgets.css"
+import "./Widgets.sass"
 
 export default function Widgets() {
   return (

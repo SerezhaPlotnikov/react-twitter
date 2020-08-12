@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "./TweetBox.css";
+import "./TweetBox.sass";
 import { Button } from "@material-ui/core";
 
 

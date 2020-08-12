@@ -1,0 +1,40 @@
+.feed__tweetbox 
+	border-bottom: 1px solid var(--twitter-background);
+	&-input 
+		display: flex;
+		align-items: center;
+		& > img 
+			padding: 10px;
+			height: 48px;
+			width: 48px;
+			border-radius: 40px;
+		& > input 
+			outline: none;
+			border: none;
+	&-bar 
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 10px 40px;
+		&-icons 
+			align-items: center;
+			justify-content: center;
+			& > a 
+				color: black;
+				text-decoration: none;
+				padding: 10px;
+				border-radius: 20px;
+			& > a:hover 
+				background-color: #e8f5fe;
+				border-radius: 30px;
+				color: var(--twitter-color);
+				transition: color 100ms ease-out;
+		&-button 
+			background-color: var(--twitter-color) !important;
+			border: none !important;
+			color: white !important;
+			font-weight: 800 !important;
+			text-transform: inherit !important;
+			border-radius: 30px !important;
+			min-height: 39px;
+			min-width: calc(62.79px);
