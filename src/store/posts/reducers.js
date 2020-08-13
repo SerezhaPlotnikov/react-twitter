@@ -17,11 +17,15 @@ const reducer = (state = initialState, action) => {
 		case Posts.FETCH_ERROR: {
 			return { ...state, loading: false, error: action.payload };
 		}
-		// case Posts.FETCH_POST: {
-		// 	return { ...state, loading: true };
-		// }
 		case Posts.ADD_POST: {
 			return { ...state, loading: false, data: [action.post, ...state.data] };
+		}
+		case Posts.DELETE_POST: {
+			return {
+				...state,
+				loading: false,
+				data: state.data.filter((post) => post.postId !== action.postId),
+			};
 		}
 		default:
 			return state;

@@ -12,6 +12,8 @@ function TweetBox(props) {
 	const sendPost = () => {
 		const post = {
 			displayName: "Serezha",
+			postDatabase: Date.now(),
+			postId: Date.now() + Math.random(),
 			username: "serezha",
 			text: tweetText,
 			avatar:

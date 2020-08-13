@@ -1,7 +1,14 @@
 import React from "react";
 import "./Post.sass";
 
-export default function Post({ displayName, username, text, avatar }) {
+export default function Post({
+	DeletePost,
+	displayName,
+	username,
+	text,
+	postId,
+	avatar,
+}) {
 	return (
 		<div className='post'>
 			<img src={avatar} alt='avatar' />
@@ -11,6 +18,7 @@ export default function Post({ displayName, username, text, avatar }) {
 						<h3>{displayName}</h3>
 					</a>
 					@{username}
+					<button onClick={() => DeletePost(postId)}>x</button>
 				</div>
 				<div className='post__body-text'>{text}</div>
 				<div className='post__body-icons'>

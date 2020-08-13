@@ -22,27 +22,34 @@ function* handleFetch() {
 	}
 }
 function* addPost(post) {
-	// try {
-	yield call(db.firestore.addDocument, "posts", { ...post });
-	// 	yield put(AddPost(key));
-	// } catch (err) {
-	// 	yield put(fetchError(err));
-	// }
+	yield call(db.firestore.setDocument, `posts/${post.postId}`, { ...post });
+}
+function* deletePost(postId) {
+	yield call(db.firestore.deleteDocument, `posts/${postId}`);
 }
 
 function* watchFetchRequest() {
 	yield takeEvery(Posts.FETCH_REQUEST, handleFetch);
-	// yield takeEvery(Posts.ADD_POST, addPost);
+}
+function* watchDeletePost() {
 	while (true) {
-		// const { url } = yield take(FETCH_REQUEST);
-		// yield fork(handleFetch, url);
+		const { postId } = yield take(Posts.DELETE_POST);
+		yield fork(deletePost, postId);
+	}
+}
+function* watchAddPost() {
+	while (true) {
 		const { post } = yield take(Posts.ADD_POST);
 		yield fork(addPost, post);
 	}
 }
 
 function* mainSaga() {
-	yield all([fork(watchFetchRequest)]);
+	yield all([
+		fork(watchFetchRequest),
+		fork(watchDeletePost),
+		fork(watchAddPost),
+	]);
 }
 
 export default mainSaga;
