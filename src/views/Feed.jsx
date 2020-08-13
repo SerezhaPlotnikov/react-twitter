@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchRequest } from "../store/posts/actions";
+import { fetchRequest, AddPost } from "../store/posts/actions";
 import TweetBox from "../components/TweetBox";
 import Post from "../components/Post";
 import "./Feed.sass";
@@ -15,7 +15,7 @@ function Feed(props) {
 			{/* Header */}
 			<div className='feed__header'>Feed</div>
 			{/* TweetBox */}
-			<TweetBox />
+			<TweetBox AddPost={props.AddPost} />
 			{/* Post */}
 			{props.posts.map((post) => (
 				<Post
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	fetchRequest,
+	AddPost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
