@@ -46,7 +46,7 @@ function TweetBox(props) {
 				</div>
 				<div>
 					<Button
-						onClick={(tweetText) => sendPost(tweetText)}
+						onClick={sendPost}
 						variant='outlined'
 						fullWidth
 						className='feed__tweetbox-bar-button'

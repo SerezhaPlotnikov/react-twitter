@@ -12,20 +12,18 @@ function* handleFetch() {
 		snapshot.forEach((post) => {
 			posts.push(post.data());
 		});
-		if (posts.length === 0) {
-			yield put(fetchError("error"));
-		} else {
-			yield put(fetchSuccess(posts));
-		}
+		yield put(fetchSuccess(posts));
 	} catch (err) {
 		yield put(fetchError(err));
 	}
 }
 function* addPost(post) {
-	yield call(db.firestore.setDocument, `posts/${post.postId}`, { ...post });
+	yield call(db.firestore.setDocument, `posts/${post.postDatabase}`, {
+		...post,
+	});
 }
-function* deletePost(postId) {
-	yield call(db.firestore.deleteDocument, `posts/${postId}`);
+function* deletePost(postDatabase) {
+	yield call(db.firestore.deleteDocument, `posts/${postDatabase}`);
 }
 
 function* watchFetchRequest() {
@@ -33,8 +31,8 @@ function* watchFetchRequest() {
 }
 function* watchDeletePost() {
 	while (true) {
-		const { postId } = yield take(Posts.DELETE_POST);
-		yield fork(deletePost, postId);
+		const { postDatabase } = yield take(Posts.DELETE_POST);
+		yield fork(deletePost, postDatabase);
 	}
 }
 function* watchAddPost() {

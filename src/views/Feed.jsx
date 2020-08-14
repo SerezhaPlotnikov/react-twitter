@@ -19,9 +19,9 @@ function Feed(props) {
 			{/* Post */}
 			{props.posts.map((post) => (
 				<Post
-					postId={post.postId}
+					postDatabase={post.postDatabase}
 					DeletePost={props.DeletePost}
-					key={post.text}
+					key={post.postId}
 					displayName={post.displayName}
 					username={post.username}
 					avatar={post.avatar}
