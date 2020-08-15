@@ -4,10 +4,14 @@ import { call, put, takeEvery, all, fork, take } from "redux-saga/effects";
 import { fetchError, fetchSuccess } from "./actions";
 import { Posts } from "./types";
 import db from "../../firebase";
+import firebase from "firebase";
 
 function* handleFetch() {
 	try {
-		const snapshot = yield call(db.firestore.getCollection, "posts");
+		const snapshot = yield call(
+			db.firestore.getCollection,
+			firebase.firestore().collection("posts").orderBy("postId", "desc"),
+		);
 		let posts = [];
 		snapshot.forEach((post) => {
 			posts.push(post.data());
@@ -18,12 +22,12 @@ function* handleFetch() {
 	}
 }
 function* addPost(post) {
-	yield call(db.firestore.setDocument, `posts/${post.postDatabase}`, {
+	yield call(db.firestore.setDocument, `posts/${post.postId}`, {
 		...post,
 	});
 }
-function* deletePost(postDatabase) {
-	yield call(db.firestore.deleteDocument, `posts/${postDatabase}`);
+function* deletePost(postId) {
+	yield call(db.firestore.deleteDocument, `posts/${postId}`);
 }
 
 function* watchFetchRequest() {
@@ -31,8 +35,8 @@ function* watchFetchRequest() {
 }
 function* watchDeletePost() {
 	while (true) {
-		const { postDatabase } = yield take(Posts.DELETE_POST);
-		yield fork(deletePost, postDatabase);
+		const { postId } = yield take(Posts.DELETE_POST);
+		yield fork(deletePost, postId);
 	}
 }
 function* watchAddPost() {

@@ -6,7 +6,7 @@ export default function Post({
 	displayName,
 	username,
 	text,
-	postDatabase,
+	postId,
 	avatar,
 }) {
 	return (
@@ -18,7 +18,7 @@ export default function Post({
 						<h3>{displayName}</h3>
 					</a>
 					@{username}
-					<button onClick={() => DeletePost(postDatabase)}>x</button>
+					<button onClick={() => DeletePost(postId)}>x</button>
 				</div>
 				<div className='post__body-text'>{text}</div>
 				<div className='post__body-icons'>

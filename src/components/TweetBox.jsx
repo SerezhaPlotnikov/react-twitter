@@ -13,7 +13,7 @@ function TweetBox(props) {
 		const post = {
 			displayName: "Serezha",
 			postDatabase: Date.now(),
-			postId: Date.now() + Math.random(),
+			postId: props.posts[0].postId + 1,
 			username: "serezha",
 			text: tweetText,
 			avatar:

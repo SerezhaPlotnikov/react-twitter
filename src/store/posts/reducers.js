@@ -24,9 +24,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				data: state.data.filter(
-					(post) => post.postDatabase !== action.postDatabase,
-				),
+				data: state.data.filter((post) => post.postId !== action.postId),
 			};
 		}
 		default:
