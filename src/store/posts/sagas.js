@@ -1,10 +1,8 @@
-import { call, put, takeEvery, all, fork, take } from "redux-saga/effects";
-// import { eventChannel } from "redux-saga";
-// import { CallApi } from "../../api/api";
+import firebase from "firebase";
+import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import db from "../../firebase";
 import { fetchError, fetchSuccess } from "./actions";
 import { Posts } from "./types";
-import db from "../../firebase";
-import firebase from "firebase";
 
 function* handleFetch() {
 	try {
