@@ -1,28 +1,28 @@
-import { call, put, takeEvery, all, fork, take } from "redux-saga/effects";
-// import { eventChannel } from "redux-saga";
-// import { CallApi } from "../../api/api";
+import firebase from "firebase";
+import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import db from "../../firebase";
 import { fetchError, fetchSuccess } from "./actions";
 import { Posts } from "./types";
-import db from "../../firebase";
 
 function* handleFetch() {
 	try {
-		const snapshot = yield call(db.firestore.getCollection, "posts");
+		const snapshot = yield call(
+			db.firestore.getCollection,
+			firebase.firestore().collection("posts").orderBy("postId", "desc"),
+		);
 		let posts = [];
 		snapshot.forEach((post) => {
 			posts.push(post.data());
 		});
-		if (posts.length === 0) {
-			yield put(fetchError("error"));
-		} else {
-			yield put(fetchSuccess(posts));
-		}
+		yield put(fetchSuccess(posts));
 	} catch (err) {
 		yield put(fetchError(err));
 	}
 }
 function* addPost(post) {
-	yield call(db.firestore.setDocument, `posts/${post.postId}`, { ...post });
+	yield call(db.firestore.setDocument, `posts/${post.postId}`, {
+		...post,
+	});
 }
 function* deletePost(postId) {
 	yield call(db.firestore.deleteDocument, `posts/${postId}`);

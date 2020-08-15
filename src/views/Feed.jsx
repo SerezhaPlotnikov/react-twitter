@@ -15,13 +15,13 @@ function Feed(props) {
       {/* Header */}
       <div className='feed__header'>Feed</div>
       {/* TweetBox */}
-      <TweetBox AddPost={props.AddPost} />
+      <TweetBox AddPost={props.AddPost} posts={props.posts} />
       {/* Post */}
       {props.posts.map((post) => (
         <Post
           postId={post.postId}
           DeletePost={props.DeletePost}
-          key={post.text}
+          key={post.postId}
           displayName={post.displayName}
           username={post.username}
           avatar={post.avatar}
