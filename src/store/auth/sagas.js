@@ -13,6 +13,25 @@ function* handleAuth() {
     yield put(AuthError(error));
   }
 }
+
+// function* signOutSaga() {
+//   try {
+//     const data = yield call(rsf.auth.signOut);
+//     yield put(signOutSuccess(data));
+//   }
+//   catch(error) {
+//     yield put(signOutFailure(error));
+//   }
+// }
+// function* loginSaga() {
+//   const credential = yield select();
+//   try {
+//     const user = yield call(db.auth.signInWithCredential, credential);
+//     yield put(AuthSuccess(user));
+//   } catch (error) {
+//     yield put(AuthError(error));
+//   }
+// }
 function* watchFetchRequest() {
   yield takeEvery(Auth.AUTH_REQUEST, handleAuth);
 }

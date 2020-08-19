@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 // import db from "../firebase";
+=======
+import db from "../firebase";
+>>>>>>> ba767036dd62e03c2fdad92f99c581274d727169
 
+export const CallPosts = async () => {
+  const docRef = await db.collection("posts").get();
+  let posts = [];
+  docRef.forEach((doc) => posts.push(doc.data()));
+  return posts;
+};
 // export const CallApi = () => {
 //   const ref = db.collection("posts");
 //   const channel = eventChannel(emit => ref.onSnapshot(emit));
