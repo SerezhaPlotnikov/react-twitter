@@ -1,5 +1,4 @@
 // import db from "../firebase";
-import firebase from "firebase";
 
 // export const CallApi = () => {
 //   const ref = db.collection("posts");
@@ -26,16 +25,16 @@ import firebase from "firebase";
 // // .catch(function(error) {
 // //   console.error("Error adding document: ", error);
 // // });
-firebase
-  .auth()
-  .signInWithPopup(provider)
-  .then(function (result) {
-    const token = result.credential.accessToken;
-    const user = result.user;
-  })
-  .catch(function (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.email;
-    const credential = error.credential;
-  });
+// firebase
+//   .auth()
+//   .signInWithPopup(provider)
+//   .then(function (result) {
+//     const token = result.credential.accessToken;
+//     const user = result.user;
+//   })
+//   .catch(function (error) {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     const email = error.email;
+//     const credential = error.credential;
+//   });
