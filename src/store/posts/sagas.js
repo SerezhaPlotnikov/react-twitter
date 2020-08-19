@@ -1,12 +1,12 @@
 import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
-import { CallPosts } from "../../api/api";
+import { FIREBASE_POSTS } from "../../api/api";
 import db from "../../firebase";
 import { fetchError, fetchSuccess } from "./actions";
 import { Posts } from "./types";
 
 function* handleFetch() {
   try {
-    const posts = yield call(CallPosts);
+    const posts = yield call(FIREBASE_POSTS.CallPosts);
     if (posts.length !== 0) {
       yield put(fetchSuccess(posts));
     } else {
@@ -17,9 +17,7 @@ function* handleFetch() {
   }
 }
 function* addPost(post) {
-  yield call(db.firestore.setDocument, `posts/${post.postId}`, {
-    ...post,
-  });
+  yield call(FIREBASE_POSTS.AddPost, post);
 }
 function* deletePost(postId) {
   yield call(db.firestore.deleteDocument, `posts/${postId}`);
