@@ -7,15 +7,11 @@ import { Posts } from "./types";
 function* handleFetch() {
   try {
     const posts = yield call(CallPosts);
-    // const snapshot = yield call(
-    // 	db.firestore.getCollection,
-    // 	firebase.firestore().collection("posts").orderBy("postId", "desc"),
-    // );
-    // let posts = [];
-    // snapshot.forEach((post) => {
-    // 	posts.push(post.data());
-    // });
-    yield put(fetchSuccess(posts));
+    if (posts.length !== 0) {
+      yield put(fetchSuccess(posts));
+    } else {
+      yield put(fetchError("error"));
+    }
   } catch (err) {
     yield put(fetchError(err));
   }
