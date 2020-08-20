@@ -14,6 +14,4 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-// const db = new ReduxSagaFirebase(firebaseApp);
-// firebase.firestore();
 export default db;
