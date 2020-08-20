@@ -8,7 +8,6 @@ export const FIREBASE_POSTS = {
     return posts;
   },
   AddPost: (post) => {
-    console.log(post);
     db.collection("posts").doc(`${post.postId}`).set({
       avatar: post.avatar,
       displayName: post.displayName,
@@ -16,6 +15,9 @@ export const FIREBASE_POSTS = {
       text: post.text,
       postId: post.postId,
     });
+  },
+  DeletePost: (post) => {
+    db.collection("posts").doc(`${post.postId}`).delete();
   },
 };
 // export const CallApi = () => {

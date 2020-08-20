@@ -15,10 +15,14 @@ export default function Post({
       <div className='post__body'>
         <div className='post__body-name'>
           <a href='/'>
-            <h3>{displayName}</h3>
+            <h3>{displayName}</h3>@{username}
           </a>
-          @{username}
-          <button onClick={() => DeletePost(postId)}>x</button>
+          <button
+            className='post__body-button'
+            onClick={() => DeletePost(postId)}
+          >
+            x
+          </button>
         </div>
         <div className='post__body-text'>{text}</div>
         <div className='post__body-icons'>
