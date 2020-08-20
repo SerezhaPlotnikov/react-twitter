@@ -1,14 +1,24 @@
-<<<<<<< HEAD
-// import db from "../firebase";
-=======
 import db from "../firebase";
->>>>>>> ba767036dd62e03c2fdad92f99c581274d727169
 
-export const CallPosts = async () => {
-  const docRef = await db.collection("posts").get();
-  let posts = [];
-  docRef.forEach((doc) => posts.push(doc.data()));
-  return posts;
+export const FIREBASE_POSTS = {
+  CallPosts: async () => {
+    const docRef = await db.collection("posts").get();
+    let posts = [];
+    docRef.forEach((doc) => posts.push(doc.data()));
+    return posts;
+  },
+  AddPost: (post) => {
+    db.collection("posts").doc(`${post.postId}`).set({
+      avatar: post.avatar,
+      displayName: post.displayName,
+      username: post.username,
+      text: post.text,
+      postId: post.postId,
+    });
+  },
+  DeletePost: (post) => {
+    db.collection("posts").doc(`${post.postId}`).delete();
+  },
 };
 // export const CallApi = () => {
 //   const ref = db.collection("posts");
@@ -48,3 +58,13 @@ export const CallPosts = async () => {
 //     const email = error.email;
 //     const credential = error.credential;
 //   });
+// db.collection("cities").add({
+//   name: "Tokyo",
+//   country: "Japan"
+// })
+// .then(function(docRef) {
+//   console.log("Document written with ID: ", docRef.id);
+// })
+// .catch(function(error) {
+//   console.error("Error adding document: ", error);
+// });

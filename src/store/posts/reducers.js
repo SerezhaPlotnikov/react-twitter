@@ -1,36 +1,44 @@
 import { Posts } from "./types";
 
 const initialState = {
-	data: [],
-	loading: false,
-	error: undefined,
+  data: [
+    {
+      displayName: "fsef",
+      username: "fsef",
+      avatar: "fsef",
+      text: "fsef",
+      postId: 4,
+      postDatabase: 3533,
+    },
+  ],
+  loading: false,
+  error: undefined,
 };
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case Posts.FETCH_REQUEST: {
-			return { ...state, loading: true };
-		}
-		case Posts.FETCH_SUCCESS: {
-			return { ...state, loading: false, data: action.data };
-		}
-		case Posts.FETCH_ERROR: {
-			return { ...state, loading: false, error: action.payload };
-		}
-		case Posts.ADD_POST: {
-			return { ...state, loading: false, data: [action.post, ...state.data] };
-		}
-		case Posts.DELETE_POST: {
-			return {
-				...state,
-				loading: false,
-				data: state.data.filter((post) => post.postId !== action.postId),
-			};
-		}
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case Posts.FETCH_REQUEST: {
+      return { ...state, loading: true };
+    }
+    case Posts.FETCH_SUCCESS: {
+      return { ...state, loading: false, data: action.data };
+    }
+    case Posts.FETCH_ERROR: {
+      return { ...state, loading: false, error: action.payload };
+    }
+    case Posts.ADD_POST: {
+      return { ...state, loading: false, data: [action.post, ...state.data] };
+    }
+    case Posts.DELETE_POST: {
+      return {
+        ...state,
+        loading: false,
+        data: state.data.filter((post) => post.postId !== action.postId),
+      };
+    }
+    default:
+      return state;
+  }
 };
 
 export { reducer as PostsReducer };
-
