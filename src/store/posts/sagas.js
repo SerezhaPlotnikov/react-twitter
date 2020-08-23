@@ -1,6 +1,5 @@
 import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
 import { FIREBASE_POSTS } from "../../api/api";
-import db from "../../firebase";
 import { fetchError, fetchSuccess } from "./actions";
 import { Posts } from "./types";
 
@@ -20,7 +19,7 @@ function* addPost(post) {
   yield call(FIREBASE_POSTS.AddPost, post);
 }
 function* deletePost(postId) {
-  yield call(db.firestore.deleteDocument, `posts/${postId}`);
+  yield call(FIREBASE_POSTS.DeletePost, postId);
 }
 
 function* watchFetchRequest() {

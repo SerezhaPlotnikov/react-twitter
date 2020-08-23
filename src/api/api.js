@@ -16,8 +16,8 @@ export const FIREBASE_POSTS = {
       postId: post.postId,
     });
   },
-  DeletePost: (post) => {
-    db.collection("posts").doc(`${post.postId}`).delete();
+  DeletePost: (postId) => {
+    db.collection("posts").doc(`${postId}`).delete();
   },
 };
 // export const CallApi = () => {

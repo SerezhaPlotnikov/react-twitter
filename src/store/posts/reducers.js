@@ -1,16 +1,7 @@
 import { Posts } from "./types";
 
 const initialState = {
-  data: [
-    {
-      displayName: "fsef",
-      username: "fsef",
-      avatar: "fsef",
-      text: "fsef",
-      postId: 4,
-      postDatabase: 3533,
-    },
-  ],
+  data: [],
   loading: false,
   error: undefined,
 };
@@ -24,7 +15,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: false, data: action.data };
     }
     case Posts.FETCH_ERROR: {
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, loading: false, error: action.error };
     }
     case Posts.ADD_POST: {
       return { ...state, loading: false, data: [action.post, ...state.data] };
