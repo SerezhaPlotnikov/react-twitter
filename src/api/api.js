@@ -2,7 +2,7 @@ import db from "../firebase";
 
 export const FIREBASE_POSTS = {
   CallPosts: async () => {
-    const docRef = await db.collection("posts").get();
+    const docRef = await db.collection("posts").orderBy("postId", "desc").get();
     let posts = [];
     docRef.forEach((doc) => posts.push(doc.data()));
     return posts;
