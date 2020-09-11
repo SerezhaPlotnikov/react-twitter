@@ -7,7 +7,7 @@ export default function SideOptions({ active, text, Icon }) {
     <div className={`sidebarOptions`}>
       <NavLink
         activeClassName='sidebarOptions--active'
-        to={`/${text.toLowerCase()}`}
+        to={`${text.toLowerCase()}`}
       >
         <Icon />
         {text}

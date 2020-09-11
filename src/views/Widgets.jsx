@@ -5,7 +5,12 @@ import { AuthRequest } from "../store/auth/actions";
 import "./Widgets.scss";
 
 export const Widgets = (props) => {
-  return <div>{/* <button onClick={}>Login</button> */}</div>;
+  const Auth = () => props.AuthRequest();
+  return (
+    <div>
+      <button onClick={Auth}>Login</button>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({});

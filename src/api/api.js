@@ -22,14 +22,11 @@ export const FIREBASE_POSTS = {
 };
 // export const CallApi = () => {
 //   const ref = db.collection("posts");
-//   const channel = eventChannel(emit => ref.onSnapshot(emit));
-// 	// const res = db
-// 	// 	.collection("posts")
-// 	// 	.onSnapshot((snapshot) => snapshot.docs.map((doc) => doc.data()));
-// 	return channel;
-// 	// const data = await postsRef.get();
-// 	// console.log(postsRef);
-// 	// return data;
+//   const channel = eventChannel((emit) => ref.onSnapshot(emit));
+//   const res = db
+//     .collection("posts")
+//     .onSnapshot((snapshot) => snapshot.docs.map((doc) => doc.data()));
+//   return channel;
 // };
 // // db.collection("posts").onSnapshot((snapshot) =>
 // // 			setPosts(snapshot.docs.map((doc) => doc.data())),

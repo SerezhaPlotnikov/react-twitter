@@ -7,6 +7,7 @@ import "./Feed.scss";
 
 function Feed(props) {
   useEffect(() => {
+    debugger;
     props.fetchRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
