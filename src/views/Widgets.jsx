@@ -6,6 +6,7 @@ import "./Widgets.scss";
 
 export const Widgets = (props) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const Auth = () => props.AuthRequest();
   return (
     <div>
@@ -15,6 +16,11 @@ export const Widgets = (props) => {
     <div>
       <button onClick={() => props.AuthRequest()}>Login</button>
 >>>>>>> b7fc8f0... add auth data
+=======
+  return (
+    <div>
+      <button onClick={() => props.AuthRequest()}>Login</button>
+>>>>>>> fix
     </div>
   );
 };
