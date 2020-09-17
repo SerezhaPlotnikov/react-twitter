@@ -1,13 +1,21 @@
-import firebase from "firebase";
-import { all, call, fork, put, takeEvery } from "redux-saga/effects";
-import db from "../../firebase";
+import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { FIREBASE_AUTH } from "../../api/api";
 import { AuthError, AuthSuccess } from "./actions";
 import { Auth } from "./types";
 
-const authProvider = new firebase.auth.GoogleAuthProvider();
 function* handleAuth() {
   try {
-    const data = yield call(db.auth.signInWithPopup, authProvider);
+    const data = yield call(FIREBASE_AUTH.AuthGoogle);
+    console.log(data.additionalUserInfo.profile);
+    yield put(AuthSuccess(data.additionalUserInfo.profile));
+  } catch (error) {
+    yield put(AuthError(error));
+  }
+}
+
+function* createUsers(payload) {
+  try {
+    const data = yield call(FIREBASE_AUTH.CreateUsers, payload);
     yield put(AuthSuccess(data));
   } catch (error) {
     yield put(AuthError(error));
@@ -23,20 +31,18 @@ function* handleAuth() {
 //     yield put(signOutFailure(error));
 //   }
 // }
-// function* loginSaga() {
-//   const credential = yield select();
-//   try {
-//     const user = yield call(db.auth.signInWithCredential, credential);
-//     yield put(AuthSuccess(user));
-//   } catch (error) {
-//     yield put(AuthError(error));
-//   }
-// }
 function* watchFetchRequest() {
   yield takeEvery(Auth.AUTH_REQUEST, handleAuth);
 }
+function* watchAddUser() {
+  while (true) {
+    const { payload } = yield take(Auth.AUTH_CREATE);
+    yield fork(createUsers, payload);
+  }
+}
+
 function* AuthSaga() {
-  yield all([fork(watchFetchRequest)]);
+  yield all([fork(watchFetchRequest), fork(watchAddUser)]);
 }
 
 export default AuthSaga;
