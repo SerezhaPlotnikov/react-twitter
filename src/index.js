@@ -5,9 +5,9 @@ import App from "./App";
 import { configureStore } from "./configureStore";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+import { createRootReducer } from "./store/index";
 
-const store = configureStore();
-
+const store = configureStore(createRootReducer);
 ReactDOM.render(
   <Provider store={store}>
     <App />

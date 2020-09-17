@@ -6,3 +6,7 @@ export const AuthSuccess = (data) => ({
   data,
 });
 export const AuthError = (error) => ({ type: Auth.AUTH_ERROR, error });
+export const AuthCreate = (payload) => ({
+  type: Auth.AUTH_CREATE,
+  data: payload,
+});

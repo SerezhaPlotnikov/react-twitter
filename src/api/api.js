@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import db from "../firebase";
 
 export const FIREBASE_POSTS = {
@@ -18,6 +19,17 @@ export const FIREBASE_POSTS = {
   },
   DeletePost: (postId) => {
     db.collection("posts").doc(`${postId}`).delete();
+  },
+};
+
+export const FIREBASE_AUTH = {
+  CreateUser: (email, password) => {
+    db.auth().createUserWithEmailAndPassword(email, password);
+  },
+  AuthGoogle: async () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    const data = await firebase.auth().signInWithPopup(provider);
+    return data;
   },
 };
 // export const CallApi = () => {

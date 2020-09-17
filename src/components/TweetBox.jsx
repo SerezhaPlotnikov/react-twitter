@@ -1,5 +1,6 @@
 import { Button } from "@material-ui/core";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import "./TweetBox.sass";
 
 function TweetBox(props) {
@@ -9,13 +10,12 @@ function TweetBox(props) {
   };
   const sendPost = () => {
     const post = {
-      displayName: "Serezha",
+      displayName: props.auth.given_name + " " + props.auth.family_name,
       postDatabase: Date.now(),
       postId: props.posts[0].postId + 1,
-      username: "serezha",
+      username: props.auth.name,
       text: tweetText,
-      avatar:
-        "https://pbs.twimg.com/profile_images/1171383108622594050/XyQPV_Q5_400x400.jpg",
+      avatar: props.auth.picture,
     };
     props.AddPost(post);
     setTweetText("");
@@ -57,4 +57,7 @@ function TweetBox(props) {
   );
 }
 
-export default TweetBox;
+const mapStateToProps = (state) => ({
+  auth: state.auth.data,
+});
+export default connect(mapStateToProps)(TweetBox);

@@ -5,10 +5,16 @@ import { AuthRequest } from "../store/auth/actions";
 import "./Widgets.scss";
 
 export const Widgets = (props) => {
+<<<<<<< HEAD
   const Auth = () => props.AuthRequest();
   return (
     <div>
       <button onClick={Auth}>Login</button>
+=======
+  return (
+    <div>
+      <button onClick={() => props.AuthRequest()}>Login</button>
+>>>>>>> b7fc8f0... add auth data
     </div>
   );
 };
