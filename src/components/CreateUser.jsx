@@ -1,37 +1,17 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import "./CreateUser.scss";
 
 const CreateUser = (props) => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>Create User</div>
-      {/* <div> */}
-      {/* <label>First Name</label>
-        <div>
-          <Field
-            name='firstName'
-            component='input'
-            type='text'
-            placeholder='First Name'
-          />
-        </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field
-            name='lastName'
-            component='input'
-            type='text'
-            placeholder='Last Name'
-          />
-        </div>
-      </div> */}
       <div>
         <label>Email</label>
         <div>
           <Field
+            className='auth__input'
             name='email'
             component='input'
             type='email'
@@ -44,6 +24,7 @@ const CreateUser = (props) => {
         <div>
           <Field
             name='password'
+            className='auth__input'
             component='input'
             type='password'
             placeholder='Password'

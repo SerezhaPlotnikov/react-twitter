@@ -6,7 +6,6 @@ import { Posts } from "./types";
 function* handleFetch() {
   try {
     const posts = yield call(FIREBASE_POSTS.CallPosts);
-    debugger;
     if (posts.length !== 0) {
       yield put(fetchSuccess(posts));
     } else {

@@ -23,8 +23,10 @@ export const FIREBASE_POSTS = {
 };
 
 export const FIREBASE_AUTH = {
-  CreateUser: (email, password) => {
-    db.auth().createUserWithEmailAndPassword(email, password);
+  CreateUser: (payload) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(payload.email, payload.password);
   },
   AuthGoogle: async () => {
     let provider = new firebase.auth.GoogleAuthProvider();

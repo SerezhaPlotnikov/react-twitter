@@ -1,4 +1,5 @@
 import React from "react";
+// import "./Profle.scss";
 
 function Profile(props) {
   return (
