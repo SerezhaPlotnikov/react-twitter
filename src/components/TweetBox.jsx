@@ -23,10 +23,7 @@ function TweetBox(props) {
   return (
     <div className='feed__tweetbox'>
       <div className='feed__tweetbox-input'>
-        <img
-          src='https://pbs.twimg.com/profile_images/1171383108622594050/XyQPV_Q5_400x400.jpg'
-          alt='avatar'
-        />
+        <img src={props.auth.picture} alt='avatar' />
         <input
           onChange={onPostChange}
           value={tweetText}

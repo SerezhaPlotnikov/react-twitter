@@ -13,13 +13,26 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case Auth.AUTH_SUCCESS: {
-      return { ...state, loading: false, data: action.data, isAuth: true };
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+        isAuth: true,
+      };
     }
     case Auth.AUTH_ERROR: {
       return { ...state, loading: false, error: action.payload, isAuth: false };
     }
     case Auth.AUTH_CREATE: {
       return { ...state, loading: false, data: action.payload, isAuth: false };
+    }
+    case Auth.AUTH_LOGOUT: {
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+        isAuth: false,
+      };
     }
     default:
       return state;

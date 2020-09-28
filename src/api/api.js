@@ -33,6 +33,9 @@ export const FIREBASE_AUTH = {
     const data = await firebase.auth().signInWithPopup(provider);
     return data;
   },
+  Logout: async () => {
+    firebase.auth().signOut();
+  },
 };
 // export const CallApi = () => {
 //   const ref = db.collection("posts");

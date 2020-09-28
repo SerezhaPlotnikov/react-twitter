@@ -1,12 +1,24 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 import AuthPage from "../views/AuthPage";
 import Feed from "../views/Feed";
 import Profile from "../views/Profile";
-export default function Routes() {
+
+function Routes(props) {
   return (
     <Switch>
-      <Route path='/home' component={Feed} />
+      <Route>
+        {!props.isAuth ? <Redirect to='/bookmarks' /> : <MainRoutes />}
+      </Route>
+    </Switch>
+  );
+}
+
+const MainRoutes = () => {
+  return (
+    <Switch>
+      <Route exact path='/home' component={Feed} />
       <Route path='/search' component={Feed} />
       <Route path='/notifications' component={Feed} />
       <Route path='/messages' component={Feed} />
@@ -17,4 +29,10 @@ export default function Routes() {
       <Route path='/profile' component={Profile} />
     </Switch>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps)(Routes);

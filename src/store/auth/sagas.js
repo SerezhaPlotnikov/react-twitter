@@ -14,7 +14,11 @@ function* handleAuth() {
 }
 
 function* createUsers(payload) {
-  yield call(FIREBASE_AUTH.CreateUser, payload);
+  try {
+    yield call(FIREBASE_AUTH.CreateUser, payload);
+  } catch (error) {
+    yield put(AuthError(error));
+  }
 }
 
 // function* signOutSaga() {
