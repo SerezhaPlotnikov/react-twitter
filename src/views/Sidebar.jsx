@@ -3,7 +3,6 @@ import Bookmarks from "@material-ui/icons/Bookmarks";
 import Home from "@material-ui/icons/Home";
 import Lists from "@material-ui/icons/List";
 import Messages from "@material-ui/icons/Message";
-import More from "@material-ui/icons/More";
 import Notifications from "@material-ui/icons/Notifications";
 import Profile from "@material-ui/icons/Person";
 import Search from "@material-ui/icons/Search";
@@ -23,7 +22,7 @@ export default function Navbar() {
       <SideOptions text='Bookmarks' Icon={Bookmarks} />
       <SideOptions text='Lists' Icon={Lists} />
       <SideOptions text='Profile' Icon={Profile} />
-      <SideOptions text='More' Icon={More} />
+      {/* <SideOptions text='More' Icon={More} /> */}
       <Button variant='outlined' className='sidebar__tweet' fullWidth>
         Tweet
       </Button>

@@ -13,7 +13,7 @@ function Feed(props) {
   return (
     <div className='feed'>
       {/* Header */}
-      <div className='feed__header'>Feed</div>
+      <div className='feed__header'></div>
       {/* TweetBox */}
       <TweetBox AddPost={props.AddPost} posts={props.posts} />
       {/* Post */}
