@@ -2,11 +2,24 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import ModalForm from "../components/Modal";
 import "./Profile.scss";
 
 const Profile = (props) => {
   console.log(props);
   const { picture, name, given_name } = props.profile.data;
+  const [open, setOpen] = React.useState(false);
+  const submit = (value) => {
+    console.log(value);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <div className='profile'>
@@ -21,7 +34,16 @@ const Profile = (props) => {
           <Link to='/bookmarks'>
             <img className='profile__picture-ava' src={picture} alt='ava' />
           </Link>
-          <Button className='profile__editor'>edit profile</Button>
+          <Button className='profile__editor' onClick={handleClickOpen}>
+            edit profile
+          </Button>
+          {open ? (
+            <ModalForm
+              onSubmit={submit}
+              open={open}
+              handleClose={handleClose}
+            />
+          ) : null}
         </div>
       </div>
       <div className='profile__nick'>{name}</div>
